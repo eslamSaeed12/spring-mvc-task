@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class LoginDto {
+public class LoginForm {
 
     @NotBlank(message = "username cannot be empty")
-    @Size(min = 8, max = 24, message = "username length must be between 8 to 24 characters")
+    @Size(min = 8, max = 12, message = "username length must be between 8 to 24 characters")
     public String username;
 
-    @NotBlank(message = "username cannot be empty")
-    @Size(min = 8, max = 24, message = "password length must be between 8 to 12 characters")
+    @NotBlank(message = "password cannot be empty")
+    @Size(min = 8, max = 12, message = "password length must be between 8 to 12 characters")
     public String password;
 }

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class RegisterDto {
+public class RegisterForm {
 
     @NotBlank(message = "username cannot be empty")
     @Size(min = 8, max = 24, message = "username length must be between 8 to 24 characters")

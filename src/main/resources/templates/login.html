@@ -17,8 +17,16 @@
       <div class="container py-4">
         <h2 class="display-4 text-center text-capitalize">login</h2>
         <div class="container mt-5">
-          <div class="row justify-content-center">
+          <div class="row justify-content-center al">
             <div class="col-md-6">
+              <div
+              th:if="${param.error != null}"
+              class="alert alert-danger alert-dismissible fade show mb-3"
+              role="alert"
+            >
+              <strong>Error!</strong> <span th:text="${param.error}"></span>
+            </div>
+
               <!-- Bootstrap Form -->
               <form
                 action="#"
@@ -35,6 +43,7 @@
                     class="form-control"
                     id="username"
                     placeholder="Enter your username"
+                    th:maxlength="12"
                     required
                   />
                   <small
@@ -48,6 +57,7 @@
                   <label for="password" class="form-label">Password</label>
                   <input
                     th:field="*{password}"
+                    th:maxlength="12"
                     type="password"
                     class="form-control"
                     id="password"
@@ -62,7 +72,12 @@
                   </small>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary mb-3">
+                  Login
+                </button>
+                <div>
+                  <a href="/register">doen't have account ? register</a>
+                </div>
               </form>
               <!-- End Bootstrap Form -->
             </div>
@@ -75,6 +90,5 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-    <script src="./app.js"></script>
   </body>
 </html>

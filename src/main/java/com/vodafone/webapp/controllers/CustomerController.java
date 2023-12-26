@@ -1,16 +1,16 @@
 package com.vodafone.webapp.controllers;
 
-import org.apache.tomcat.util.http.parser.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import com.vodafone.webapp.dtos.LoginDto;
-import com.vodafone.webapp.dtos.RegisterDto;
+import com.vodafone.webapp.dtos.LoginForm;
+import com.vodafone.webapp.dtos.RegisterForm;
 import com.vodafone.webapp.services.CustomerService;
 
 import jakarta.validation.Valid;
@@ -23,15 +23,23 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("/register")
-    public String GetReigster(Model model) {
-        model.addAttribute("registerForm", new RegisterDto());
+    public String GetRegisterPage(Model model) {
+        model.addAttribute("registerForm", new RegisterForm());
         return "register";
     }
 
     @PostMapping("/register")
-    public String PostRegister(@Valid @ModelAttribute("registerForm") RegisterDto registerDto, BindingResult bindingResult) {
+    public String Register(@Valid @ModelAttribute("registerForm") RegisterForm registerDto,
+                           BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
+            return "register";
+        }
+
+        try {
+            this.customerService.register(registerDto);
+        } catch (Exception exception) {
+            bindingResult.addError(new FieldError("registerForm", "username", exception.getMessage()));
             return "register";
         }
 
@@ -39,29 +47,14 @@ public class CustomerController {
     }
 
     @GetMapping("/login")
-    public String GetLogin(Model model) {
-        model.addAttribute("loginForm", new LoginDto());
-        return "login";
-    }
-
-    @PostMapping(path = "/login")
-    public String PostLogin(@Valid @ModelAttribute("loginForm") LoginDto loginForm, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            return "login";
-        }
-
-        return "redirect:/";
-    }
-
-    @PostMapping("/logout")
-    public String GetLogout() {
+    public String GetLoginPage(Model model) {
+        model.addAttribute("loginForm", new LoginForm());
         return "login";
     }
 
     @GetMapping("/")
-    public String GetHomePage() {
-        return "home";
+    public String GetHomePage(Model model, Authentication authentication) {
+        return "index";
     }
 
 }
