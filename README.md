@@ -1,17 +1,5 @@
 # mvc spring boot web app
 
-- Implement web page having registration page containing customer info (Username, Password, Email, Phone, First name and
-  Last name).
-- Implement web page having login page containing Username and Password which redirects to Welcome page.
-- Use spring boot in your implementation.
-- Use embedded DB in your application, DB: containing Customer info.
-- Do validations.
-- Do junit testing.
-- Use Maven to build your code.
-- Try to use design pattern in the code, code style is considered in the task.
-- Try using security modules on spring for the password, encrypt the password.
-- Delivery package is Docker file, runnable jar and the source code.
-
 ## Prerequisites
 
 - Java 17 or later
