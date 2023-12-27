@@ -1,27 +1,72 @@
-# Getting Started
+# mvc spring boot web app
 
-### Reference Documentation
-For further reference, please consider the following sections:
+- Implement web page having registration page containing customer info (Username, Password, Email, Phone, First name and
+  Last name).
+- Implement web page having login page containing Username and Password which redirects to Welcome page.
+- Use spring boot in your implementation.
+- Use embedded DB in your application, DB: containing Customer info.
+- Do validations.
+- Do junit testing.
+- Use Maven to build your code.
+- Try to use design pattern in the code, code style is considered in the task.
+- Try using security modules on spring for the password, encrypt the password.
+- Delivery package is Docker file, runnable jar and the source code.
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.2.1/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.2.1/maven-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.2.1/reference/htmlsingle/index.html#web)
-* [Spring Security](https://docs.spring.io/spring-boot/docs/3.2.1/reference/htmlsingle/index.html#web.security)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.2.1/reference/htmlsingle/index.html#data.sql.jpa-and-spring-data)
-* [Validation](https://docs.spring.io/spring-boot/docs/3.2.1/reference/htmlsingle/index.html#io.validation)
-* [Thymeleaf](https://docs.spring.io/spring-boot/docs/3.2.1/reference/htmlsingle/index.html#web.servlet.spring-mvc.template-engines)
+## Prerequisites
 
-### Guides
-The following guides illustrate how to use some features concretely:
+- Java 17 or later
+- Maven (optional)
+- Docker (optional)
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
-* [Securing a Web Application](https://spring.io/guides/gs/securing-web/)
-* [Spring Boot and OAuth2](https://spring.io/guides/tutorials/spring-boot-oauth2/)
-* [Authenticating a User with LDAP](https://spring.io/guides/gs/authenticating-ldap/)
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Validation](https://spring.io/guides/gs/validating-form-input/)
-* [Handling Form Submission](https://spring.io/guides/gs/handling-form-submission/)
+## Installation
 
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/eslamSaeed12/spring-mvc-task
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd spring-mvc-task
+    ```
+
+3. Build the project using Maven:
+
+    ```bash
+    ./mvnw clean install
+    ```
+
+## Run Using Docker
+
+1. Navigate to the project directory:
+
+    ```bash
+    cd spring-mvc-task
+    ```
+2. Build docker image
+    ```bash
+    docker build -t springmvcapp .
+    ```
+3. Run Docker Image
+    ```bash
+    docker run -p 8080:8080 springmvcapp
+    ```
+
+## Run Locally
+
+1. Run the application:
+
+    ```bash
+    ./mvnw spring-boot:run
+    ```
+
+2. Open your web browser and visit [http://localhost:8080](http://localhost:8080) to access the application.
+
+## Run Tests
+
+Execute the following command to run tests:
+
+```bash
+./mvnw test
