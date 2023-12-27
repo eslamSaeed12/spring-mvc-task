@@ -1,5 +1,6 @@
 package com.vodafone.webapp.controllers;
 
+import com.vodafone.webapp.entites.Customer;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,7 @@ public class CustomerController {
     }
 
     @PostMapping("/register")
-    public String Register(@Valid @ModelAttribute("registerForm") RegisterForm registerDto,
+    public String Register(@Valid @ModelAttribute("registerForm") Customer registerDto,
                            BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

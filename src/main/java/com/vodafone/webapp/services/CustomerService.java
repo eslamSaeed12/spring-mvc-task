@@ -1,5 +1,6 @@
 package com.vodafone.webapp.services;
 
+import com.vodafone.webapp.exceptions.UniquenessViolationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,24 +32,17 @@ public class CustomerService implements UserDetailsService {
         return customer;
     }
 
-    public void register(RegisterForm registerDto) throws Exception {
+    public Customer register(Customer registerDto) throws UniquenessViolationException {
 
         boolean isCustomerExist = isUsernameOrEmailExists(registerDto.getUsername(), registerDto.getEmail());
 
         if (isCustomerExist) {
-            throw new Exception("User Already Registered Before");
+            throw new UniquenessViolationException();
         }
 
-        Customer customer = new Customer();
+        registerDto.setPassword(this.bcrypt.encode(registerDto.getPassword()));
 
-        customer.setUsername(registerDto.username);
-        customer.setEmail(registerDto.email);
-        customer.setPassword(this.bcrypt.encode(registerDto.password));
-        customer.setFirstName(registerDto.firstName);
-        customer.setLastName(registerDto.lastName);
-        customer.setPhoneNumber(registerDto.phoneNumber);
-
-        this.customerRepository.save(customer);
+        return this.customerRepository.save(registerDto);
     }
 
     private boolean isUsernameOrEmailExists(String username, String email) {
